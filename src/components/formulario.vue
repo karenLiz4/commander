@@ -18,7 +18,7 @@ const producto = computed({
 <template>
     <div>
         <div class="form-producto">
-            <label for="nombre">Nombre de producto:</label>
+            <label for="nombre">Nombre de product:</label>
             <input v-model="producto.nombre" type="text" name="nombre" required />
         </div>
         <div class="form-producto">
