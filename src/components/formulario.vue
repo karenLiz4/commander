@@ -17,17 +17,35 @@ const producto = computed({
 
 <template>
     <div>
-        <div class="form-producto">
-            <label for="nombre">Nombre de product:</label>
-            <input v-model="producto.nombre" type="text" name="nombre" required />
-        </div>
-        <div class="form-producto">
-            <label for="descripcion">Descripción:</label>
-            <input v-model="producto.descripcion" type="text" name="descripcion" required />
-        </div>
-        <div class="form-producto">
-            <label for="precio">Precio:</label>
-            <input v-model="producto.precio" type="float" name="precio" required />
-        </div>
+            <div class="hp text-center pt-2">Crear producto</div>
+            <div class="form-floating mb-3">
+                <input v-model="producto.nombre" type="text"  class="form-control" name="nombre" required/>
+                <label for="nombre">Nombre de producto:</label>
+            </div>
+            <div class="form-floating mb-3 ">
+                <input v-model="producto.descripcion" type="text" class="form-control" name="descripcion" required />
+                <label for="descripcion">Descripción:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input v-model="producto.precio" type="float" class="form-control"  name="precio" required />
+                <label for="precio">Precio:</label>
+            </div>
     </div>
 </template>
+
+<style>
+
+.hp{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 2.5rem;
+    color:#189AB4;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.form-floating{
+    color: #189AB4;
+}
+
+
+</style>

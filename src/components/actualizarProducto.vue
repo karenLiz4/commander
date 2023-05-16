@@ -42,8 +42,8 @@ const resetProductoSelec = () => {
 </script>
 
 <template>
-<div>
-      <h1>Editar o eliminar un producto</h1>
+<div class="wrapper bg-white">
+  <div class="hp text-center pt-2">Editar o eliminar un producto</div>
       <div>
         <label for="productoSelec">Selecciona el producto</label>
         <select name="productoSelec" id="productoSelec" v-model="productoSelec">

@@ -33,10 +33,11 @@ const submit = async () => {
 </script>
 
 <template>
-    <h1>Crear producto</h1>
   
+  <div class="wrapper bg-white">
     <Formulario v-model="producto"></Formulario>
-    <button @click="submit">Aceptar</button>
+    <button class="btn btn-block text-center my-4"  @click="submit">Aceptar</button>
+  </div>
 
 </template>
 
