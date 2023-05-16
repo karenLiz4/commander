@@ -7,28 +7,6 @@ const loginForm = ref({
     password: '',
 })
 
-const nuevoUsuario = ref({
-    name: '',
-    email: '',
-    password: '',
-})
-
-const registroUsuario = async () => {
-    const { data, error } = await supabase.auth.signUp({
-        email: nuevoUsuario.value.email,
-        password: nuevoUsuario.value.password,
-        options: {
-            data: {
-                name: nuevoUsuario.value.name,
-            }
-        }
-    })
-    if (error) {
-        console.log(error)
-    } else {
-        console.log('Se ha registrado el usuario -> ', data)
-    }
-}
 const login = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
         email: loginForm.value.email,
@@ -42,38 +20,27 @@ const login = async () => {
 }
 </script>
 <template>
-    <div>
-        <div>
-            <h2>Iniciar sesión</h2>
-            <div>
-                <label for="email">Email</label>
-                <input v-model="loginForm.email" name="email" type="email" required />
-            </div>
-            <div >
-                <label for="password">Contraseña</label>
-                <input  v-model="loginForm.password" name="password" type="password" required />
-            </div>
-            <div>
-                <button type="button" @click="login">Aceptar</button>
-            </div>
+    <div class="wrapper bg-white">
+        <div class="h1 text-center">Commander</div>
+        <div class="h5 text-muted text-center pt-2">Iniciar sesión</div>
+        <form class="pt-3">
+        <div class="form-group py-2">
+            <div class="input-field"><img src="img/arroba.png">
+            <input v-model="loginForm.email" name="email" type="email" placeholder="Email" required /></div>
         </div>
-        <div>
-            <h2 >Registrarse</h2>
-            <div >
-                <label>Nombre</label>
-                <input v-model="nuevoUsuario.name" name="name" type="text" required />
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input v-model="nuevoUsuario.email" name="email" type="email" required />
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input v-model="nuevoUsuario.password" name="password" type="password" required />
-            </div>
-            <div>
-                <button type="button" @click="registroUsuario">Aceptar</button>
-            </div>
+        <div class="form-group py-1 pb-2">
+            <div class="input-field"><img src="img/password.png">
+            <input v-model="loginForm.password" name="password" type="password" placeholder="Contraseña" required /></div>
         </div>
+        <div class="d-flex align-items-start">
+            <button class="btn btn-block text-center my-4" type="button" @click="login">Iniciar sesión</button>
+        </div>
+        <div class="text-center pt-3 text-muted">¿Todavía no te has registrado? <router-link to="/register">Registrate aquí</router-link></div>
+    </form>
     </div>
 </template>
+
+<style>
+
+
+</style>

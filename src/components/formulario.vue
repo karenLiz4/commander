@@ -17,7 +17,6 @@ const producto = computed({
 
 <template>
     <div>
-        <h1>Crear producto</h1>
         <div class="form-producto">
             <label for="nombre">Nombre de producto:</label>
             <input v-model="producto.nombre" type="text" name="nombre" required />
