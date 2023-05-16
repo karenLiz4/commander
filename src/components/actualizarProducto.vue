@@ -45,8 +45,8 @@ const resetProductoSelec = () => {
 <div class="wrapper bg-white">
   <div class="hp text-center pt-2">Editar o eliminar un producto</div>
       <div>
-        <label for="productoSelec">Selecciona el producto</label>
-        <select name="productoSelec" id="productoSelec" v-model="productoSelec">
+        <label class = "h7" for="productoSelec">Selecciona el producto</label>
+        <select class="form-select" name="productoSelec" id="productoSelec" v-model="productoSelec" >
           <option v-for="producto in productos" :key="producto.id" :value="producto">{{ producto.nombre }}</option>
         </select>
         <div v-if="productoSelec">
@@ -59,3 +59,11 @@ const resetProductoSelec = () => {
       </div>
     </div>
 </template>
+
+<style>
+.h7 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px
+}
+
+</style>

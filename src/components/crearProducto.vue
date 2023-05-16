@@ -41,4 +41,5 @@ const submit = async () => {
 
 </template>
 
-<!-- <style scoped></style> -->
+<style>
+</style>
