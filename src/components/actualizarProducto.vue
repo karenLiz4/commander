@@ -52,8 +52,8 @@ const resetProductoSelec = () => {
         <div v-if="productoSelec">
           <formulario v-model="productoSelec"/>
           <div>
-            <button  @click="update(productoSelec)">Actualizar</button>
-            <eliminarProducto @eliminarProducto="resetProductoSelec" :productoSelec="productoSelec" />
+            <button  class="btn btn-block text-center my-4" @click="update(productoSelec)">Actualizar</button>
+            <eliminarProducto class="btn btn-block text-center my-4" @eliminarProducto="resetProductoSelec" :productoSelec="productoSelec" />
           </div>
         </div>
       </div>

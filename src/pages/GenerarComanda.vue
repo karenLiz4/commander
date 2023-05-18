@@ -1,16 +1,15 @@
 <script>
-import Comanda from '../components/comanda.vue';
+import { ref } from 'vue'
+import crearComanda from '../components/crearComanda.vue';
 
-export default {
-  components: {
-    Comanda
-  }
-};
+const comanda = () => {
+
+}
+
 </script>
 
 <template>
-    <div>
-      <h1>Generar Comanda</h1>
-      <Comanda />
-    </div>
+  <div class="col">
+    <crearComanda @crearComanda="comanda" />
+  </div>
 </template>
