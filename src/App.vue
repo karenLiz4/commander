@@ -33,7 +33,8 @@ onMounted(async () => {
       <div class="right-section">
         <router-link class="nav-button" to="/">Inicio</router-link>
         <router-link v-if="usuario" class="nav-button" to="/admin">Admin</router-link>
-        <router-link v-else class="nav-button-fin" to="/login">Iniciar sesión</router-link>
+        <router-link v-if="usuario" class="nav-button" to="/comanda">Comanda</router-link>
+        <router-link v-else class="nav-button" to="/login">Iniciar sesión</router-link>
       </div>
     </div>
 
@@ -49,7 +50,7 @@ onMounted(async () => {
   top: 0;
   left: 0;
   right: 0;
-  background-color: #D4F1F4;
+  background-color: #fff;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -76,10 +77,11 @@ h1 {
 
 .right-section {
   display: flex;
+  
 }
 
 .nav-button, .nav-button-fin{
-  background-color:white;
+  background-color: #D4F1F4;
   color: black;
   border: none;
   padding: 8px 16px;

@@ -8,11 +8,11 @@ const manejoCrearProducto = () => {
   listComponent.value.fetchProductos()
 }
 
-const manejoActualizarProducto = (data) => {
+const manejoActualizarProducto = () => {
   listComponent.value.fetchProductos()
 }
-
 const listComponent = ref(null)
+
 
 </script>
 

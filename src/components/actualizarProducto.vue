@@ -53,7 +53,7 @@ const resetProductoSelec = () => {
           <formulario v-model="productoSelec"/>
           <div>
             <button  class="btn btn-block text-center my-4" @click="update(productoSelec)">Actualizar</button>
-            <eliminarProducto class="btn btn-block text-center my-4" @eliminarProducto="resetProductoSelec" :productoSelec="productoSelec" />
+            <eliminarProducto class="btn btn-block-eliminar text-center my-4" @eliminarProducto="resetProductoSelec" :productoSelec="productoSelec" />
           </div>
         </div>
       </div>
@@ -64,6 +64,22 @@ const resetProductoSelec = () => {
 .h7 {
     font-family: 'Poppins', sans-serif;
     margin-bottom: 10px
+}
+
+
+.btn.btn-block-eliminar {
+    border-radius: 20px;
+    background-color: red;
+    color: #fff;
+    display: block;
+    padding: 0.5rem 1rem;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.btn.btn-block-eliminar:hover {
+    background-color: #CC0000;
+    color: #fff;
 }
 
 </style>

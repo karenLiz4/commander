@@ -18,7 +18,7 @@ let producto = ref({
 const submit = async () => {
   const { data, error } = await supabase
     .from('productos')
-    .insert({ nombre: producto.value.nombre, descripcion: producto.value.descripcion, precio: producto.value.precio })
+    .insert({ nombre: producto.value.nombre, descripcion: producto.value.descripcion, precio: producto.value.precio})
     .select()
 
   if (error) {
