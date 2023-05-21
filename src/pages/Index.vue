@@ -17,7 +17,7 @@ const cerrarSesion = async () => {
 
 <template>
     <div class="wrapper bg-white">
-        <h1>Bienvenido</h1>
+        <h1>Bienvenida</h1>
         <div v-if="usuario">
             <div class="h5 text-muted text-center pt-2">
                 {{ usuario.user_metadata.name }}
