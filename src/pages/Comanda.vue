@@ -31,13 +31,13 @@ const agregarNombreComanda = (nombre) => {
   nombreBotonesSeleccinados.value.push(nombre)
 }
 
-const concatenarProductos = (nombre) => {
-  let nombreConcatenado = nombreConcatenado + nombre;
-}
+// const concatenarProductos = (nombre) => {
+//   let nombreConcatenado = nombreConcatenado + nombre;
+// }
 
 //insert
 const submitComanda = async () => {
-  //prueba
+  //guarda los productos de la comanda en la base de datos y los concatena
   const productosSeleccionados = nombreBotonesSeleccinados.value.join(', ')
   comanda.value.producto = productosSeleccionados
 
@@ -60,6 +60,12 @@ const submitComanda = async () => {
     };
     nombreBotonesSeleccinados.value = [];
     emit('crearComanda')
+
+
+    // Imprimir la comanda (chatGPT)
+    const printData = `Camarero: ${comanda.value.camarero}\nMesa: ${comanda.value.nMesa}\nProducto: ${comanda.value.producto}`;
+    printToUSBPrinter(printData);
+
   }
 }
 
@@ -72,6 +78,26 @@ defineExpose({
   fetchProductos,
   agregarNombreComanda
 })
+
+// Función para imprimir en la impresora térmica a través de USB (chatGPT)
+const printToUSBPrinter = (data) => {
+const endpoint = 'http://localhost:8080'; // Cambiar la URL según la configuración de tu servidor de impresión
+const requestOptions = {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ data })
+};
+
+fetch(endpoint, requestOptions)
+  .then(response => {
+    console.log('Comanda impresa correctamente');
+  })
+  .catch(error => {
+    console.log('Error al imprimir la comanda:', error);
+  });
+}
+
+
 </script>
 
 <template>
