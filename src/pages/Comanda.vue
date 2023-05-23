@@ -9,10 +9,13 @@ let nombreBotonesSeleccinados = ref([])
 //variable comanda
 const emit = defineEmits(['crearComanda'])
 let comanda = ref({
-    camarero : '',
-    nMesa : '',
-    producto : ''
+  camarero: '',
+  nMesa: '',
+  producto: ''
 })
+
+
+
 
 //funciones
 const fetchProductos = async () => {
@@ -28,18 +31,34 @@ const agregarNombreComanda = (nombre) => {
   nombreBotonesSeleccinados.value.push(nombre)
 }
 
+const concatenarProductos = (nombre) => {
+  let nombreConcatenado = nombreConcatenado + nombre;
+}
+
 //insert
 const submitComanda = async () => {
+  //prueba
+  const productosSeleccionados = nombreBotonesSeleccinados.value.join(', ')
+  comanda.value.producto = productosSeleccionados
+
   const { data, error } = await supabase
     .from('comandas')
-    .insert({ camarero: comanda.value.camarero, nMesa: comanda.value.nMesa, producto: comanda.value.producto})
+    .insert({ camarero: comanda.value.camarero, nMesa: comanda.value.nMesa, producto: comanda.value.producto })
     .select()
 
   if (error) {
     console.log(error);
   }
   else {
-    console.log('se ha creado la comanda' +  data + 'correctamente');
+    console.log('se ha creado la comanda' + data + 'correctamente');
+
+    //dejar los campos vacios
+    comanda.value = {
+      camarero: '',
+      nMesa: '',
+      producto: ''
+    };
+    nombreBotonesSeleccinados.value = [];
     emit('crearComanda')
   }
 }
@@ -112,23 +131,27 @@ defineExpose({
           </div>
         </div>
       </div>
+
       <div class="col-md-4">
         <div class="wrapper-c">
           <div class="hp text-center pt-2">Comanda</div>
           <div class="card-body">
-            <div class="form-floating mb-3">      
-                <input v-model="comanda.camarero" type="text" class="form-control" name="camarero" required />
-                <label for="camarero">Camarero:</label>
+            <div class="form-floating mb-3">
+              <input v-model="comanda.camarero" type="text" class="form-control" name="camarero" required />
+              <label for="camarero">Camarero:</label>
             </div>
-            <div class="form-floating mb-3">      
-                <input v-model="comanda.nMesa" type="text" class="form-control" name="nMesa" required />
-                <label for="nMesa">Número de mesa:</label>
+            <div class="form-floating mb-3">
+              <input v-model="comanda.nMesa" type="text" class="form-control" name="nMesa" required />
+              <label for="nMesa">Número de mesa:</label>
             </div>
-            <div v-if="nombreBotonesSeleccinados">
-              <div v-for="nombreBotonSeleccinado in nombreBotonesSeleccinados">
-                <h4 class="text-center" >{{ nombreBotonSeleccinado }}</h4>
+            <div class="form-floating mb-3">
+              <!-- <textarea v-model="comanda.producto" type="text" class="form-control" name="producto" required /> -->
+              <div v-if="nombreBotonesSeleccinados">
+                <div v-for="nombreBotonSeleccinado in nombreBotonesSeleccinados">
+                  <h4 class="text-center">{{ nombreBotonSeleccinado }}</h4>
+                </div>
+                <button class="btn btn-block mb-2" @click="submitComanda">Aceptar</button>
               </div>
-              <button class="btn btn-block mb-2"  @click="submitComanda">Aceptar</button>
             </div>
           </div>
         </div>
@@ -154,4 +177,5 @@ defineExpose({
   padding: 60px 50px;
   background-color: white;
   box-shadow: 20px 20px 80px rgb(206, 206, 206)
-}</style>
+}
+</style>
