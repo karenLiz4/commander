@@ -11,7 +11,10 @@
     "@supabase/supabase-js": "^2.21.0",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
+    "escpos": "^3.0.0-alpha.6",
+    "usb": "^2.9.0",
     "vue": "^3.2.47",
+    "vue-html-to-paper": "^1.4.4",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

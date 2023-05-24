@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { supabase } from '../services/supabase'
 
+
 let productos = ref([])
 let nombreBotonesSeleccinados = ref([])
 
@@ -13,9 +14,6 @@ let comanda = ref({
   nMesa: '',
   producto: ''
 })
-
-
-
 
 //funciones
 const fetchProductos = async () => {
@@ -31,9 +29,6 @@ const agregarNombreComanda = (nombre) => {
   nombreBotonesSeleccinados.value.push(nombre)
 }
 
-// const concatenarProductos = (nombre) => {
-//   let nombreConcatenado = nombreConcatenado + nombre;
-// }
 
 //insert
 const submitComanda = async () => {
@@ -52,6 +47,21 @@ const submitComanda = async () => {
   else {
     console.log('se ha creado la comanda' + data + 'correctamente');
 
+    const comandaTxt = `Camarero: ${comanda.value.camarero}\nNúmero de mesa: ${comanda.value.nMesa}\nProductos: ${comanda.value.producto}\n\n`;
+
+    // Crear el contenido del archivo
+    const fileContent = new Blob([comandaTxt], { type: 'text/plain' });
+
+    // Crear un enlace de descarga
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(fileContent);
+    downloadLink.download = 'comanda.txt';
+
+    // Simular clic en el enlace para descargar el archivo
+    downloadLink.click();
+
+
+
     //dejar los campos vacios
     comanda.value = {
       camarero: '',
@@ -61,13 +71,9 @@ const submitComanda = async () => {
     nombreBotonesSeleccinados.value = [];
     emit('crearComanda')
 
-
-    // Imprimir la comanda (chatGPT)
-    const printData = `Camarero: ${comanda.value.camarero}\nMesa: ${comanda.value.nMesa}\nProducto: ${comanda.value.producto}`;
-    printToUSBPrinter(printData);
-
   }
 }
+
 
 onMounted(() => {
   fetchProductos()
@@ -79,23 +85,12 @@ defineExpose({
   agregarNombreComanda
 })
 
-// Función para imprimir en la impresora térmica a través de USB (chatGPT)
-const printToUSBPrinter = (data) => {
-const endpoint = 'http://localhost:8080'; // Cambiar la URL según la configuración de tu servidor de impresión
-const requestOptions = {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ data })
-};
+// Método para imprimir la página
+// const printWindow = () => {
+//   window.print();
+// }
 
-fetch(endpoint, requestOptions)
-  .then(response => {
-    console.log('Comanda impresa correctamente');
-  })
-  .catch(error => {
-    console.log('Error al imprimir la comanda:', error);
-  });
-}
+
 
 
 </script>
@@ -176,7 +171,7 @@ fetch(endpoint, requestOptions)
                 <div v-for="nombreBotonSeleccinado in nombreBotonesSeleccinados">
                   <h4 class="text-center">{{ nombreBotonSeleccinado }}</h4>
                 </div>
-                <button class="btn btn-block mb-2" @click="submitComanda">Aceptar</button>
+                <button class="btn btn-block mb-2" @click="submitComanda()">Aceptar</button>
               </div>
             </div>
           </div>
