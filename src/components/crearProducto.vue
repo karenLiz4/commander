@@ -8,24 +8,44 @@ import { ref } from 'vue'
 //variable productos
 const emit = defineEmits(['crearProducto'])
 let producto = ref({
-    nombre : '',
-    descripcion : '',
-    precio : ''
+  nombre: '',
+  descripcion: '',
+  precio: ''
 })
 
 
+const errorProducto = ref('')
+
 //insert
 const submit = async () => {
+
+
+     // Validar campos requeridos
+     if (!producto.value.nombre  || !producto.value.descripcion|| !producto.value.precio) {
+        errorProducto.value = 'Por favor, complete todos los campos'
+        return
+    }
+
   const { data, error } = await supabase
     .from('productos')
-    .insert({ nombre: producto.value.nombre, descripcion: producto.value.descripcion, precio: producto.value.precio})
+    .insert({ nombre: producto.value.nombre, descripcion: producto.value.descripcion, precio: producto.value.precio })
     .select()
 
   if (error) {
     console.log(error);
   }
   else {
-    console.log('se ha creado el producto' +  data + 'correctamente');
+    console.log('se ha creado el producto' + data + 'correctamente');
+
+    errorProducto.value = ''
+    
+    //dejar los campos vacios
+    producto.value = {
+      nombre: '',
+      descripcion: '',
+      precio: ''
+    };
+
     emit('crearProducto')
   }
 }
@@ -33,13 +53,11 @@ const submit = async () => {
 </script>
 
 <template>
-  
   <div class="wrapper bg-white">
     <Formulario v-model="producto"></Formulario>
-    <button class="btn btn-block text-center my-4"  @click="submit">Aceptar</button>
+    <div class="text-center text-danger">{{ errorProducto }}</div>
+    <button class="btn btn-block text-center my-4" @click="submit">Aceptar</button>
   </div>
-
 </template>
 
-<style>
-</style>
+<style></style>

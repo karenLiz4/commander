@@ -14,6 +14,7 @@ const producto = computed({
 })
 
 
+const descripciones = ['Entrante', 'Plato', 'Postre', 'Bebida']
 
 
 
@@ -26,13 +27,15 @@ const producto = computed({
             <input v-model="producto.nombre" type="text" class="form-control" name="nombre" required />
             <label for="nombre">Nombre de producto:</label>
         </div>
-        <div class="form-floating mb-3 ">
-            <input v-model="producto.descripcion" type="text" class="form-control" name="descripcion" required />
+        <div class="form-floating mb-3">
+            <select v-model="producto.descripcion" class="form-select" name="descripcion" required>
+                <option v-for="descripcion in descripciones" :key="descripcion" :value="descripcion">{{ descripcion }}</option>
+            </select>
             <label for="descripcion">Descripción:</label>
         </div>
         <div class="form-floating mb-3">
-            <input v-model="producto.precio" type="float" class="form-control" name="precio" required />
-            <label for="precio">Precio:</label>
+            <input v-model="producto.precio" type="text" class="form-control" name="precio" required />
+            <label for="precio">Precio (Solo números separados por un punto):</label>
         </div>
     </div>
 </template>

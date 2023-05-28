@@ -69,6 +69,7 @@ const registroUsuario = async () => {
             <div class="d-flex align-items-start">
                 <button class="btn btn-block text-center my-4" type="button" @click="registroUsuario">Aceptar</button>
             </div>
+            <div class="text-center text-muted">¿Si estabas registrado? <router-link to="/login">Inicia sesión</router-link></div>
         </form>
         <div class="text-center text-danger">{{ errorRegistro }}</div>
     </div>

@@ -12,7 +12,6 @@ const routes = [
   { path: "/login", component: Login },
   { path: "/register", component: Register },
   { path: "/comanda", component: Comanda }
-  // { path: "/generarComanda", component: GenerarComanda }
 ];
 
 const history = createWebHistory();
