@@ -17,6 +17,8 @@ let comanda = ref({
   producto: ''
 })
 
+const errorComanda = ref('')
+
 //funciones
 const fetchProductos = async () => {
   const { data, error } = await supabase
@@ -39,8 +41,12 @@ const eliminarNombreComanda = (index) => {
   nombreBotonesSeleccinados.value.splice(index, 1);
 }
 
+
 //insert
 const submitComanda = async () => {
+
+ 
+
   //guarda los productos de la comanda en la base de datos y los concatena separados por comas
   const productosSeleccionados = nombreBotonesSeleccinados.value.join(',')
   comanda.value.producto = productosSeleccionados
@@ -62,10 +68,17 @@ const submitComanda = async () => {
 
   if (error) {
     console.log(error);
+
+     // Validar campos requeridos
+  if (!comanda.value.camarero || !comanda.value.nMesa || !comanda.value.comensales ) {
+    errorComanda.value = 'Por favor, complete todos los campos obligatorio incluido los productos'
+    return
+  }
   }
   else {
     console.log('se ha creado la comanda' + data + 'correctamente');
 
+    errorComanda.value = ''
     const comandaHtml = `
       <html>
       <head>
@@ -205,19 +218,19 @@ defineExpose({
           <div class="card-body">
             <div class="form-floating mb-3">
               <input v-model="comanda.camarero" type="text" class="form-control" name="camarero" required />
-              <label for="camarero">Camarero: (obligatorio)</label>
+              <label for="camarero">Camarero<label class="text-danger" for="camarero">*</label> :</label>
             </div>
             <div class="form-floating mb-3">
               <input v-model="comanda.nMesa" type="text" class="form-control" name="nMesa" required />
-              <label for="nMesa">Número de mesa: (obligatorio)</label>
+              <label for="nMesa">Número de mesa<label class="text-danger" for="nMesa">*</label> :</label>
             </div>
             <div class="form-floating mb-3">
               <input v-model="comanda.comensales" type="text" class="form-control" name="comensales" required />
-              <label for="nMesa">Número de comensales: (obligatorio)</label>
+              <label for="nMesa">Número de comensales<label class="text-danger" for="comensales">*</label> :</label>
             </div>
             <div class="form-floating mb-3">
               <input v-model="comanda.nota" type="text" class="form-control" name="nota" />
-              <label for="nMesa">Nota: (opcional)</label>
+              <label for="nMesa">Nota:</label>
             </div>
             <div class="form-floating mb-3">
               <div v-if="nombreBotonesSeleccinados">
@@ -226,6 +239,7 @@ defineExpose({
                   <h4>{{ nombreBotonSeleccinado }}</h4>
                   <button class="btn btn-danger mb-2" @click="eliminarNombreComanda(index)">Eliminar</button>
                 </div>
+                <div class="text-center text-danger  mb-2">{{ errorComanda }}</div>
                 <button class="btn btn-block mb-2" @click="submitComanda()">Aceptar</button>
               </div>
             </div>
