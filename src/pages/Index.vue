@@ -22,7 +22,6 @@ const cerrarSesion = async () => {
         <div  v-if="usuario">
             <div class="h5 text-muted text-center pt-2">
                 {{ usuario.user_metadata.name }}
-                {{ usuario.user_metadata.email }}
             </div>
             <button class="btn btn-block text-center my-4" type="button" @click="cerrarSesion">Cerrar sesion</button>
         </div>

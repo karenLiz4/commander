@@ -1,0 +1,26 @@
+glosario:
+
+
+HTML (HyperText Markup Language)
+CSS (Cascading Style Sheets)
+js (JavaScript)
+SPAs (Single Page Applications)
+REST (representational state transfer)
+URI (Uniform Resource Identifier)
+
+
+
+FALTA BOOSTRAP
+
+enlaces:
+
+definicion html: https://es.wikipedia.org/wiki/HTML
+definicion css: https://es.wikipedia.org/wiki/CSS
+definicion js: https://es.wikipedia.org/wiki/JavaScript
+definición de vue: https://es.wikipedia.org/wiki/Vue.js
+definición de Bootstrap: https://es.wikipedia.org/wiki/Bootstrap_(framework)
+definición de supabase: https://en.wikipedia.org/wiki/Superbase_(database)
+definición de PostgreSQL: https://es.wikipedia.org/wiki/PostgreSQL
+definicion de RESTful: https://aws.amazon.com/es/what-is/restful-api/#:~:text=La%20API%20RESTful%20es%20una,llevar%20a%20cabo%20varias%20tareas.
+definición de rest: https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional
+diagram de gantt: https://www.canva.com/design/DAFkaj_xMvw/Kui7PvFNKmudn_bLF6PPsA/edit

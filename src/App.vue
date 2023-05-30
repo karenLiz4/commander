@@ -33,7 +33,7 @@ onMounted(async () => {
       <div class="right-section">
         <router-link v-if="usuario" class="nav-button" to="/admin">Administrar</router-link>
         <router-link v-if="usuario" class="nav-button" to="/comanda">Comanda</router-link>
-        <router-link v-if="usuario" class="nav-button" to="/">Información</router-link>
+        <router-link v-if="usuario" class="nav-button" to="/">Usuario</router-link>
         <router-link v-else class="nav-button" to="/login">Iniciar sesión</router-link>
 
       </div>

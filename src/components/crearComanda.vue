@@ -43,8 +43,6 @@ const resetForm = () => {
 }
 </script>
 
-
-
 <template>
   <div>
     <h2>Crear Comanda</h2>
