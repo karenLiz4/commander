@@ -28,7 +28,7 @@ onMounted(async () => {
     <div class="navbar">
       <div class="left-section">
         <a href=""><h1>Commander</h1></a>
-        <img class="logo" src="img/logo.png" alt="Logo">  
+        <img class="logo" src="/img/logo.png" alt="Logo">  
       </div>
       <div class="right-section">
         <router-link v-if="usuario" class="nav-button" to="/admin">Administrar</router-link>

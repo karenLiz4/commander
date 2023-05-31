@@ -37,12 +37,12 @@ const login = async () => {
         <div class="h5 text-muted text-center pt-2">Iniciar sesión</div>
         <form class="pt-3">
             <div class="form-group py-2">
-                <div class="input-field"><img src="img/arroba.png">
+                <div class="input-field"><img src="/img/arroba.png">
                     <input v-model="loginForm.email" name="email" type="email" placeholder="Email" required />
                 </div>
             </div>
             <div class="form-group py-1 pb-2">
-                <div class="input-field"><img src="img/password.png">
+                <div class="input-field"><img src="/img/password.png">
                     <input v-model="loginForm.password" name="password" type="password" placeholder="Contraseña" required />
                 </div>
             </div>
