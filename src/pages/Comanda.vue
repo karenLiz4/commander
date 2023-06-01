@@ -23,7 +23,7 @@ const fetchProductos = async () => {
   const { data, error } = await supabase
     .from('productos')
     .select()
-    .order('created_at')
+    .order('nombre')
 
   productos.value = data
 }

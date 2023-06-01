@@ -7,6 +7,7 @@ const props = defineProps({
 
 const emit = defineEmits(['eliminarProducto'])
 
+
 const eliminarProducto = async (id) => {
     const { error } = await supabase
         .from('productos')

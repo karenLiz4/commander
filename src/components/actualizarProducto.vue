@@ -9,17 +9,15 @@ let productos = ref([])
 const emit = defineEmits(['actualizarProducto'])
 
 onMounted(async () => {
-  // Recuperar las peliculas desde la bd supabase
   const { data, error } = await supabase
     .from('productos')
     .select()
-    .order('created_at')
+    .order('created_at', { ascending: false })
 
   productos.value = data
 })
 
 const update = async (producto) => {
-  // Actualizamos la película con sus nuevos datos a la bd
   const { data, error } = await supabase
     .from('productos')
     .update({ nombre: producto.nombre, descripcion: producto.descripcion, precio: producto.precio})
