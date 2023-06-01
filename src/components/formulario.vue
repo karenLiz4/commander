@@ -35,7 +35,7 @@ const descripciones = ['Entrante', 'Plato', 'Postre', 'Bebida']
         </div>
         <div class="form-floating mb-3">
             <input v-model="producto.precio" type="text" class="form-control" name="precio" required />
-            <label for="precio">Precio (Solo números separados por un punto):</label>
+            <label for="precio">Precio:</label>
         </div>
     </div>
 </template>

@@ -6,7 +6,6 @@ import { supabase } from '../services/supabase'
 let productos = ref([])
 let nombreBotonesSeleccinados = ref([])
 
-
 //variable comanda
 const emit = defineEmits(['crearComanda'])
 let comanda = ref({
@@ -45,7 +44,7 @@ const eliminarNombreComanda = (index) => {
 //insert
 const submitComanda = async () => {
 
- 
+
 
   //guarda los productos de la comanda en la base de datos y los concatena separados por comas
   const productosSeleccionados = nombreBotonesSeleccinados.value.join(',')
@@ -68,12 +67,19 @@ const submitComanda = async () => {
 
   if (error) {
     console.log(error);
+    
 
-     // Validar campos requeridos
-  if (!comanda.value.camarero || !comanda.value.nMesa || !comanda.value.comensales ) {
-    errorComanda.value = 'Por favor, complete todos los campos obligatorio incluido los productos'
-    return
-  }
+    // Validar campos requeridos
+    if (!comanda.value.camarero || !comanda.value.nMesa || !comanda.value.comensales) {
+      errorComanda.value = 'Por favor, complete todos los campos obligatorios incluido los productos'
+      return
+    }
+
+    if (!/^[0-9]+$/.test(comanda.value.nMesa) || !/^[0-9]+$/.test(comanda.value.comensales)) {
+        errorComanda.value = 'Número de mesa y comensales deben de ser un número'
+        return;
+    }
+    
   }
   else {
     console.log('se ha creado la comanda' + data + 'correctamente');
@@ -102,7 +108,7 @@ const submitComanda = async () => {
         </style>
       </head>
       <body>
-        <h1>Comanda </h1>
+        <h1>Comanda</h1>
         <h3>Camarero:</h3> <p>${comanda.value.camarero}</p>
         <h3>Número de mesa:</h3> <p>${comanda.value.nMesa}</p>
         <h3>Número de comensales:</h3> <p>${comanda.value.comensales}</p>

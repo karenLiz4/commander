@@ -27,7 +27,7 @@ onMounted(async () => {
   <div>
     <div class="navbar">
       <div class="left-section">
-        <a href=""><h1>Commander</h1></a>
+        <a href="/"><h1>Commander</h1></a>
         <img class="logo" src="/img/logo.png" alt="Logo">  
       </div>
       <div class="right-section">

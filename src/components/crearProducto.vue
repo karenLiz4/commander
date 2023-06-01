@@ -20,11 +20,16 @@ const errorProducto = ref('')
 const submit = async () => {
 
 
-     // Validar campos requeridos
-     if (!producto.value.nombre  || !producto.value.descripcion|| !producto.value.precio) {
-        errorProducto.value = 'Por favor, complete todos los campos'
-        return
-    }
+  // Validar campos requeridos
+  if (!producto.value.nombre || !producto.value.descripcion || !producto.value.precio) {
+    errorProducto.value = 'Por favor, complete todos los campos'
+    return
+  }
+
+  if (!/^[0-9]+(\.[0-9]+)?$/.test(producto.value.precio)) {
+    errorProducto.value = 'El precio solo debe incluir números enteros o decimales separado con punto. Ejemplo: 8.50';
+    return;
+  }
 
   const { data, error } = await supabase
     .from('productos')
@@ -38,7 +43,7 @@ const submit = async () => {
     console.log('se ha creado el producto' + data + 'correctamente');
 
     errorProducto.value = ''
-    
+
     //dejar los campos vacios
     producto.value = {
       nombre: '',
